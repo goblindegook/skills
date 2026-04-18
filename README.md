@@ -2,7 +2,7 @@
 
 This workspace contains custom Codex skills.
 
-## Install From GitHub (`goblindegook/skills`)
+## Installation
 
 Use the [`skills`](https://www.npmjs.com/package/skills) npm package to install these skills from GitHub.
 
