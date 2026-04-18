@@ -7,10 +7,6 @@ description: Enforce strict test-driven development for behavior changes and bug
 
 Run strict red-green-refactor in tiny increments.
 
-## Guiding Principle
-
-> The more your tests resemble the way your software is used, the more confidence they can give you.
-
 ## Core Rules
 
 1. Write one failing test for one observable effect.
@@ -43,17 +39,11 @@ Run strict red-green-refactor in tiny increments.
    - Re-evaluate existing code in light of the new code.
 5. Run tests after every refactor change.
 
-## Mocking Guidelines
-
-1. Mock only at system boundaries. For external HTTP APIs, mock at the outermost layer using boundary tools such as `msw` (JavaScript/TypeScript) and `responses` (Python).
-2. Do not mock databases when tests can run against them.
-3. Inject dependencies to fake non-deterministic behavior (time, randomness); prefer simple dependency injection without containers.
-4. Mock the file system only when necessary.
-5. NEVER mock internal collaborators; treat this as a critical error.
-6. NEVER mock the functions under test.
-7. NEVER mock anything in the codebase that we own.
-
 ## Good vs Bad Tests
+
+Guiding principle:
+
+> The more your tests resemble the way your software is used, the more confidence they can give you.
 
 Good tests:
 
@@ -75,6 +65,15 @@ Bad tests:
 7. Break during refactors with no behavior change.
 8. Name tests by HOW instead of WHAT.
 9. Verify through external means instead of the interface under test.
+
+## Mocking Guidelines
+
+1. Mock only at system boundaries. For external HTTP APIs, mock at the outermost layer using boundary tools such as `msw` (JavaScript/TypeScript) and `responses` (Python).
+2. Do not mock databases when tests can run against them.
+3. Inject dependencies to fake non-deterministic behavior (time, randomness); prefer simple dependency injection without containers.
+4. Mock the file system only when necessary.
+5. NEVER mock internal collaborators; treat this as a critical error.
+6. NEVER mock the functions under test.
 
 ## Checklist
 
