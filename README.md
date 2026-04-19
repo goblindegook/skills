@@ -1,18 +1,16 @@
-# Skills
+# Agent Skills
 
-This workspace contains custom Codex skills.
+Custom AI agent skills.
 
 ## Installation
 
-Use the [`skills`](https://www.npmjs.com/package/skills) npm package to install these skills from GitHub.
-
-The CLI is meant to be run with `npx`:
+Install using [`skills`](https://www.npmjs.com/package/skills):
 
 ```bash
 npx skills add goblindegook/skills
 ```
 
-Install specific skills:
+For specific skills:
 
 ```bash
 npx skills add goblindegook/skills/rca

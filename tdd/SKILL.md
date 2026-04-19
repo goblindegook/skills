@@ -14,7 +14,9 @@ Use strict red-green-refactor in small, behavior-focused increments.
 3. Refactor only when all tests are green.
 4. Repeat.
 
-## Before Each Test
+## Workflow
+
+### Before Each Test
 
 1. Confirm the external behavior and interface change.
 2. Confirm the single effect this test will verify.
@@ -24,7 +26,7 @@ Use strict red-green-refactor in small, behavior-focused increments.
    - Hide complexity internally.
 4. Confirm the immediate step with the user.
 
-## Red-Green-Refactor Loop
+### Red-Green-Refactor Loop
 
 1. Red: Add one test for one effect; verify it fails for the right reason.
 2. Green: Implement only what is needed to pass that test.
