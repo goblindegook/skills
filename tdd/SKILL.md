@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Enforce strict test-driven development for behavior changes and bug fixes. Use when implementing through automated tests with one-test-at-a-time red-green-refactor discipline.
+description: Use when implementing behavior changes or bug fixes where automated tests can drive the implementation, or when asked to use TDD.
 ---
 
 # TDD
@@ -8,10 +8,6 @@ description: Enforce strict test-driven development for behavior changes and bug
 ## Purpose
 
 Use strict red-green-refactor in small, behavior-focused increments.
-
-## Trigger
-
-Use for behavior changes and bug fixes where automated tests can drive implementation.
 
 ## Interaction Contract
 

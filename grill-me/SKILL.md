@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
+description: Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
 ---
 
 # Grill Me
@@ -8,10 +8,6 @@ description: Interview the user relentlessly about a plan or design until reachi
 ## Purpose
 
 Interview the user relentlessly about a plan or design until both sides reach shared understanding. Walk each branch of the decision tree and resolve dependencies one by one. For each question, provide your recommended answer.
-
-## Trigger
-
-Use when the user wants to stress-test a plan, wants to be "grilled", or asks for aggressive interrogation of assumptions.
 
 ## Interaction Contract
 
