@@ -1,75 +1,100 @@
 ---
 name: rca
-description: Perform structured root cause analysis for incidents, defects, outages, delays, and quality regressions using iterative "why" questions across all relevant branches. Use when a user asks for RCA, 5-Whys, postmortem reasoning, causal-tree analysis, or help identifying possible/actual root causes and mitigation actions.
+description: Use when asked for RCA, 5-Whys, postmortem, causal-tree analysis, or help identifying root causes for incidents, defects, outages, delays, or quality regressions.
 ---
 
 # RCA
 
 ## Overview
 
-Run branch-aware root cause analysis from the apparent problem to defensible causes. Build a causal tree, classify each leaf by confidence, and end with concrete actions per possible/actual root cause.
+Build a branch-aware causal tree from apparent problem to defensible root causes. Classify each leaf by confidence. Produce concrete actions per cause.
 
 ## Core Rules
 
-1. Ask targeted, evidence-seeking questions.
-2. Ask one question at a time during live interaction.
-3. Go wide and deep; never stop at the first plausible cause.
-4. For each branch, ask both:
-   - Why did this happen?
-   - Why was it not prevented or detected earlier?
-5. Separate facts from assumptions.
-6. Never present hypotheses as confirmed without evidence.
-7. Do not finish until each possible/actual root cause has at least one action.
+1. **Interview before everything.** Do not read files, run commands, or produce any document until the interview is complete.
+2. **One question at a time.** Do not comment on, interpret, or editorialize answers — record and ask the next question.
+3. **Questions follow the incident narrative** (what happened, why, what changed) — never what you observe in the codebase.
+4. **Go wide and deep.** Never stop at the first plausible cause.
+5. **Per branch, ask both:** *Why did this happen?* and *Why wasn't it prevented or detected earlier?*
+6. **Separate facts from assumptions.** Never present a hypothesis as confirmed without evidence.
+7. **Never assume a cause from partial answers** — ask instead.
+8. **Do not finish** until every possible/actual root cause has at least one action.
 
 ## Workflow
 
-1. Restate the apparent problem in one sentence.
-2. Capture impact and scope: what failed, who was affected, when it started, frequency, severity.
-3. Build a causal tree:
-   - Treat each symptom as a node.
-   - Ask "why?" and add child causes.
-   - Continue until no deeper controllable cause is found or evidence is insufficient.
-4. Label each leaf:
-   - `actual root cause` (evidence-backed),
-   - `possible root cause` (plausible, unverified),
-   - `unknown` (insufficient evidence).
-5. Distinguish cause types where useful: proximate, contributing, systemic.
+### 1. Interview
+
+Ask one question at a time. Cover at minimum:
+- What is the apparent problem?
+- What failed, who was affected, how severe?
+- When did it start — is it ongoing or resolved?
+- What evidence exists (logs, metrics, alerts, error messages, timelines)?
+- What changed recently (deploys, config, data, dependencies)?
+
+Code and file inspection may corroborate or deepen findings — but only after the interview establishes what happened and why. Never let codebase observations drive the questions.
+
+### 2. Restate
+
+Summarize the apparent problem in one sentence. Confirm with user if ambiguous.
+
+### 3. Build Causal Tree
+
+- Treat each symptom as a node.
+- Ask "why?" recursively, adding child causes.
+- Stop when no deeper controllable cause exists or evidence is insufficient.
+
+### 4. Label Each Leaf
+
+| Label | Meaning |
+|---|---|
+| `actual root cause` | Evidence-backed |
+| `possible root cause` | Plausible, unverified |
+| `unknown` | Insufficient evidence |
+
+Distinguish cause types where useful: proximate, contributing, systemic.
+
+### 5. Produce Document
+
+See **Deliverable** section.
 
 ## Branch Lenses
 
-Use these lenses to expand weak branches:
+Apply to expand weak branches:
 
-- `Technical`: code defects, architecture, dependencies, config, infra, networking.
-- `Data`: bad inputs, schema drift, migrations, stale/incorrect data.
-- `Process`: change management, rollout, testing, review, incident response.
-- `Detection`: monitoring gaps, alert tuning, observability blind spots.
-- `Human/Org`: ownership ambiguity, handoff failures, staffing/load, training.
-- `External`: third-party outages, vendor/API behavior, environmental constraints.
+| Lens | Examples |
+|---|---|
+| Technical | Code defects, architecture, dependencies, config, infra, networking |
+| Data | Bad inputs, schema drift, migrations, stale/incorrect data |
+| Process | Change management, rollout, testing, review, incident response |
+| Detection | Monitoring gaps, alert tuning, observability blind spots |
+| Human/Org | Ownership ambiguity, handoff failures, staffing/load, training |
+| External | Third-party outages, vendor/API behavior, environmental constraints |
 
 If a branch is weak, collect evidence or downgrade confidence.
 
 ## Evidence and Confidence
 
-For each node, record:
-- evidence source (logs, metrics, timeline, report, code diff, interview),
-- confidence (`high`, `medium`, `low`),
-- status (`confirmed`, `hypothesis`, `unknown`).
+For each node record:
 
-## Required Deliverable
+| Field | Values |
+|---|---|
+| Evidence source | logs, metrics, timeline, code diff, interview |
+| Confidence | `high` / `medium` / `low` |
+| Status | `confirmed` / `hypothesis` / `unknown` |
 
-Produce one Markdown RCA document with:
+## Deliverable
+
+One Markdown document with these sections:
 
 1. `# Root Cause Analysis: <problem>`
 2. `## Problem Statement`
 3. `## Impact and Scope`
 4. `## Timeline (if known)`
-5. `## Analysis Tree (Mermaid)`
-6. `## Node Details` (node ID, statement, evidence, confidence, status)
+5. `## Analysis Tree` — Mermaid causal tree (example below)
+6. `## Node Details` — node ID, statement, evidence, confidence, status
 7. `## Identified Root Causes`
-8. `## Recommended Actions`
-9. `## Open Questions and Next Evidence to Collect`
-
-Include a Mermaid causal tree, for example:
+8. `## Recommended Actions` — one row per cause: ID, action, type, expected effect, priority (P0–P3), owner, target date, verification metric
+9. `## Open Questions`
 
 ```mermaid
 flowchart TD
@@ -79,13 +104,4 @@ flowchart TD
   C2 --> G1["G1: Why not detected sooner?"]
 ```
 
-In `## Recommended Actions`, provide one row per possible/actual root cause with:
-
-- cause ID,
-- action,
-- action type (`containment`, `mitigation`, `corrective`, `preventive`),
-- expected effect,
-- priority (`P0`-`P3`),
-- owner (if known),
-- target date (if known),
-- verification metric or test.
+Action types: `containment` · `mitigation` · `corrective` · `preventive`
