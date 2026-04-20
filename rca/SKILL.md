@@ -5,15 +5,25 @@ description: Use when asked for RCA, 5-Whys, postmortem, causal-tree analysis, o
 
 # RCA
 
-## Overview
+## Purpose
 
 Build a branch-aware causal tree from apparent problem to defensible root causes. Classify each leaf by confidence. Produce concrete actions per cause.
 
+## Trigger
+
+Use for RCA, 5-Whys, postmortems, causal trees, and root-cause discovery for incidents, defects, outages, delays, and quality regressions.
+
+## Interaction Contract
+
+1. Ask one question at a time during interview phases.
+2. Keep the user informed when evidence changes branch direction.
+3. Confirm assumptions before promoting hypotheses to conclusions.
+
 ## Core Rules
 
-1. **Interview before everything.** Do not read files, run commands, or produce any document until the interview is complete.
+1. **Interview first, investigate in parallel when needed.** Start from the user narrative before deep inspection. Targeted read-only checks during interview are allowed to resolve ambiguity.
 2. **One question at a time.** Do not comment on, interpret, or editorialize answers — record and ask the next question.
-3. **Questions follow the incident narrative** (what happened, why, what changed) — never what you observe in the codebase.
+3. **Questions follow the incident narrative** (what happened, why, what changed). Codebase observations can corroborate but must not hijack interview flow.
 4. **Go wide and deep.** Never stop at the first plausible cause.
 5. **Per branch, ask both:** *Why did this happen?* and *Why wasn't it prevented or detected earlier?*
 6. **Separate facts from assumptions.** Never present a hypothesis as confirmed without evidence.
@@ -31,7 +41,7 @@ Ask one question at a time. Cover at minimum:
 - What evidence exists (logs, metrics, alerts, error messages, timelines)?
 - What changed recently (deploys, config, data, dependencies)?
 
-Code and file inspection may corroborate or deepen findings — but only after the interview establishes what happened and why. Never let codebase observations drive the questions.
+Targeted code/log/timeline checks may happen during interview when they disambiguate facts. Avoid broad spelunking until the baseline narrative is established. Never let codebase observations drive the questions.
 
 ### 2. Restate
 
@@ -105,3 +115,7 @@ flowchart TD
 ```
 
 Action types: `containment` · `mitigation` · `corrective` · `preventive`
+
+## Stop Condition
+
+Stop when each root-cause branch is labeled (`actual root cause`, `possible root cause`, or `unknown`), each branch has at least one action, and remaining unknowns are listed in `## Open Questions`.

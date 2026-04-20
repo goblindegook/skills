@@ -5,7 +5,19 @@ description: Enforce strict test-driven development for behavior changes and bug
 
 # TDD
 
+## Purpose
+
 Use strict red-green-refactor in small, behavior-focused increments.
+
+## Trigger
+
+Use for behavior changes and bug fixes where automated tests can drive implementation.
+
+## Interaction Contract
+
+1. Align with the user before the first test in a sequence.
+2. Check in at decision boundaries: interface changes, new behavior branch, test strategy shifts, or non-trivial refactors.
+3. If the next micro-step is obvious and low risk, continue without pausing, then report progress after up to 3 red-green-refactor loops.
 
 ## Non-Negotiable Rules
 
@@ -24,7 +36,7 @@ Use strict red-green-refactor in small, behavior-focused increments.
    - Reduce public methods.
    - Simplify parameters.
    - Hide complexity internally.
-4. Confirm the immediate step with the user.
+4. Confirm with the user when crossing a decision boundary; otherwise proceed and report.
 
 ### Red-Green-Refactor Loop
 
