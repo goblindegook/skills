@@ -30,6 +30,9 @@ When deciding whether to ask or inspect:
 3. Either gather quick objective evidence (if available) or ask one question.
 4. Record answer, recommendation, and the dependency it unlocks.
 5. Repeat until no material branch remains unresolved.
+6. Present an end-of-interview decision log overview (resolved decisions, open risks, and final recommendations).
+7. Ask the user to confirm the overview or provide corrections.
+8. After confirmation, optionally offer to write a concise specification to a file.
 
 ## Output
 
@@ -40,6 +43,16 @@ Maintain a running decision log with:
 - Recommendation
 - Blocking dependencies
 
+At the end of the interview, provide an explicit "Decision Log Overview" section that summarizes:
+
+- Final resolved decisions
+- Open risks accepted by the user
+- Recommended next actions
+
+Then ask for explicit confirmation before closing.
+
+After confirmation, offer an optional next step to write a specification to a file.
+
 ## Stop Condition
 
-Stop only when all material branches are resolved or explicitly accepted as open risks by the user.
+Stop only when all material branches are resolved or explicitly accepted as open risks by the user, and the user has confirmed the final decision log overview.
