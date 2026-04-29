@@ -1,38 +1,40 @@
 ---
 name: grill-me
-description: Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
+description: Use when user wants to stress-test an idea or plan, review a design, or says "grill me".
 ---
 
 # Grill Me
 
 ## Purpose
 
-Interview the user relentlessly about a plan or design until both sides reach shared understanding. Walk each branch of the decision tree and resolve dependencies one by one. For each question, provide your recommended answer.
+Rigorously interview the user on an idea, plan, or design until there is shared understanding. Walk each decision branch, resolve dependencies, and for each question present 2-3 trade-off scenarios plus a recommendation.
 
 ## Interaction Contract
 
 1. Ask one question at a time.
-2. Keep the user in the loop at each branch decision.
-3. Every question must include a recommended answer and short rationale.
+2. Keep the user involved at each branch decision.
+3. Every question must include a recommended answer and brief rationale.
 
 ## Evidence-First Tie-Break Rule
 
 When deciding whether to ask or inspect:
 
-1. If a question can be answered objectively from the codebase with quick read-only checks, inspect first.
+1. If a codebase exists and a question is answerable with quick read-only checks, inspect first.
 2. Otherwise, ask the user directly.
 3. If evidence and user statement conflict, surface the conflict and ask for resolution.
 
 ## Workflow
 
-1. Restate the plan/design in one sentence.
-2. Identify the highest-risk unresolved decision.
-3. Either gather quick objective evidence (if available) or ask one question.
-4. Record answer, recommendation, and the dependency it unlocks.
-5. Repeat until no material branch remains unresolved.
-6. Present an end-of-interview decision log overview (resolved decisions, open risks, and final recommendations).
-7. Ask the user to confirm the overview or provide corrections.
-8. After confirmation, optionally offer to write a concise specification to a file.
+1. Determine whether a codebase exists in the current workspace.
+2. Restate the idea/plan/design in one sentence.
+3. Identify the highest-risk unresolved decision.
+4. Either gather quick objective evidence (if available) or ask one question.
+5. Record answer, recommendation, and the dependency it unlocks.
+6. Repeat until no material branch remains unresolved.
+7. Present a "Decision Log Overview" (resolved decisions, open risks, final recommendations).
+8. Ask the user to confirm the overview or provide corrections.
+9. If the user requests a written artifact, save a concise specification to `docs/specs/YYYY-MM-DD-<topic>.md`.
+10. If a specification file was created, check it for placeholders, contradictions, ambiguity, or scope mismatch, then ask the user to review it.
 
 ## Output
 
@@ -43,16 +45,23 @@ Maintain a running decision log with:
 - Recommendation
 - Blocking dependencies
 
-At the end of the interview, provide an explicit "Decision Log Overview" section that summarizes:
+End with a "Decision Log Overview" that summarizes:
 
 - Final resolved decisions
 - Open risks accepted by the user
 - Recommended next actions
 
-Then ask for explicit confirmation before closing.
+If a specification is written, it must include at minimum:
 
-After confirmation, offer an optional next step to write a specification to a file.
+- Problem
+- Constraints
+- Decisions (with rationale)
+- Proposed approach
+- Open risks (and mitigations)
+- Next actions
 
 ## Stop Condition
 
-Stop only when all material branches are resolved or explicitly accepted as open risks by the user, and the user has confirmed the final decision log overview.
+Stop when all material branches are resolved or explicitly accepted as open risks, and the user confirms the final decision log overview.
+
+If the user asks to stop or pivot, summarize the current decision-log state and end the current grilling cycle.
