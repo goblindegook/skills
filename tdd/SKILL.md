@@ -7,7 +7,16 @@ description: Use when implementing behavior changes or bug fixes where automated
 
 ## Purpose
 
-Use strict red-green-refactor in small, behavior-focused increments.
+Use strict red-green-refactor in small, behavior-focused increments. Write a failing test before writing the code that makes it pass.
+
+## When To Use
+
+* Implementing new behaviour.
+* Modifying existing behaviour.
+* Fixing a bug (reproduce the bug with a test before fixing).
+* Anything that could potentially alter publicly observable behaviour.
+
+Do not use for purely declarative changes (configuration, styling, documentation, or static content).
 
 ## Interaction Contract
 
@@ -52,30 +61,39 @@ Guiding principle:
 
 > The more your tests resemble the way your software is used, the more confidence they can give you.
 
-Good tests:
+### What to Do
 
 1. Test behavior users and callers care about.
 2. Use public interfaces.
-3. Survive internal refactors.
-4. Describe what, not how.
-5. Keep assertions focused on one behavior.
-6. Use real internal collaborators whenever possible.
+3. Write tests that survive internal refactors.
+4. Describe the outcome, not how the outcome is achieved.
+5. Separate test code into Arrange-Act-Assert blocks.
+6. Write one test per behavior.
+7. Use real internal collaborators whenever possible.
+8. Write tests that are descriptive and self-contained — duplication is tolerable if it makes the test easier to understand.
+9. See the new test fail — if you never see it fail, you cannot know it's testing the right thing.
 
-Bad tests:
+### What to Avoid
 
-1. Write a large batch of tests up front instead of iterating one failing test at a time.
-2. Implement behavior not required by the current failing test.
-3. Test implementation details instead of behavior.
-4. Mock internal collaborators.
-5. Test private methods.
-6. Assert how many times a function is called or the exact call order.
-7. Break after internal refactors that do not change behavior.
-8. Name tests by how instead of what.
-9. Assert through side channels instead of the interface under test.
+1. Writing a large batch of tests up front instead of iterating one failing test at a time.
+2. Writing a test that you never see fail: it's probably worthless.
+3. Writing tests after the implementation.
+4. Packing multiple unrelated assertions under the same test
+5. Implementing behavior not required by the current failing test.
+6. Testing implementation details instead of publicly observable behavior (e.g. private methods or internal state).
+7. Mocking internal collaborators.
+8. Asserting how many times a function is called or the exact call order.
+9. Writing tests that break after internal refactors that do not change behavior.
+10. Naming tests according to how instead of what.
+11. Asserting through side channels instead of the interface under test.
+12. Relying on snapshot tests: snapshots lack specificity and are easy to update by mistake.
+13. Skipping or commenting tests to make them pass.
+14. Changing a failing test expectation to match (incorrect) production output.
+15. Saying "All tests pass" without having actually run the tests.
 
 ## Mocking Guidelines
 
-1. Mock only at system boundaries. For external HTTP APIs, mock at the outermost layer using boundary tools such as `msw` (JavaScript/TypeScript) and `responses` (Python).
+1. Mock only at system boundaries. For external HTTP APIs, mock at the outermost layer using boundary tools such as `msw` (JavaScript/TypeScript) or `responses` (Python).
 2. Prefer real databases when tests can run against them.
 3. Inject dependencies for non-deterministic behavior (time, randomness); prefer simple dependency injection.
 4. Mock the file system only when necessary.
