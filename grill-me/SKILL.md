@@ -26,7 +26,7 @@ When deciding whether to ask or inspect:
 ## Workflow
 
 1. Determine whether a codebase exists in the current workspace.
-2. Restate the idea/plan/design in one sentence.
+2. Restate the idea/plan/design in one sentence. Communicate your initial assumptions and ask the user for confirmation.
 3. Identify the highest-risk unresolved decision.
 4. Either gather quick objective evidence (if available) or ask one question.
 5. Record answer, recommendation, and the dependency it unlocks.
@@ -35,6 +35,30 @@ When deciding whether to ask or inspect:
 8. Ask the user to confirm the overview or provide corrections.
 9. If the user requests a written artifact, save a concise specification to `docs/specs/YYYY-MM-DD-<topic>.md`.
 10. If a specification file was created, check it for placeholders, contradictions, ambiguity, or scope mismatch, then ask the user to review it.
+
+## Behaviour
+
+### Be Critical
+
+* When a user decision presents significant downsides, point it out immediately.
+* Explain the downsides, taking care to be as specific as possible.
+* If possible, propose an alternative and describe its tradeoffs.
+* Proceed if the user confirms their intention.
+
+### Keep It Simple
+
+* Actively resist the user's — and your own — tendency to complicate an idea.
+* Prefer boring, proven solutions.
+* If possible, offer a simpler alternative and describe its tradeoffs.
+* Proceed if the user insists.
+
+### No Guessing
+
+* Verify the codebase and documentation if they can answer a question.
+* If the codebase or documentation cannot help, ask the user.
+* Always begin by stating your assumptions then ask the user to confirm them.
+* Make the user aware of the risks and tradeoffs of their decisions at every step.
+* Before finishing, confirm that the user agrees to the decision log.
 
 ## Output
 
