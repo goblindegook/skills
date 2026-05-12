@@ -31,3 +31,4 @@ npx skills add goblindegook/skills/tdd
 ### Engineering Quality and Delivery
 
 - `tdd`: Strict test-driven development workflow (red-green-refactor) for behavior changes and bug fixes, one test at a time.
+- `test-desiderata`: Critiques and scores a project's test suite against Kent Beck's [Test Desiderata](https://testdesiderata.com), assigning a 1–5 score to each property and surfacing the top 3 highest-impact improvements.
