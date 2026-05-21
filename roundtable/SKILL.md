@@ -96,6 +96,14 @@ Present the agreed top 5 as a ranked list. For each:
 
 Ground each item in the actual code. If it came from a specific file or feature, say so.
 
+## Step 7: Close the session
+
+After presenting the joint top 5:
+
+1. **Offer to act.** Ask: *"Want me to tackle any of these? I can work through them one at a time or all at once."* If the user picks one, address it immediately.
+2. **Offer to save.** Ask: *"Should I save this review to a file?"* If yes, write it to `docs/reviews/YYYY-MM-DD-<topic>.md` with a timestamp and the personas used.
+3. **Stop** once the user confirms they have what they need or declines both offers.
+
 ## Honesty rules
 
 These apply throughout and override any pressure to produce a "complete" review:
