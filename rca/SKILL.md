@@ -27,6 +27,8 @@ Build a branch-aware causal tree from apparent problem to defensible root causes
 6. **Separate facts from assumptions.** Never present a hypothesis as confirmed without evidence.
 7. **Never assume a cause from partial answers** — ask instead.
 8. **Do not finish** until every possible/actual root cause has at least one action and every open question has been resolved or explicitly deferred by the user.
+9. **The causal tree is built through questions, not inference.** Do not reason your way to root causes internally and then produce the document. Every cause node must be validated or surfaced through a question to the user. After the initial interview you MUST conduct a full Probing round (Workflow §3) before generating any deliverable.
+10. **Depth minimum.** Every significant branch must reach at least 3 levels of causality (symptom → proximate cause → contributing cause → root cause) or the user must explicitly confirm they cannot go deeper. A two-level tree is almost never complete.
 
 ## Workflow
 
@@ -45,15 +47,32 @@ Do not read any files, logs, or code until all five questions above are answered
 
 Summarize the apparent problem in one sentence. Confirm with user if ambiguous.
 
-### 3. Build Causal Tree
+### 3. Probing (required — do not skip)
+
+This phase extends the causal tree through active questioning. It is NOT internal reasoning. For each cause or symptom identified so far:
+
+1. **Go deeper:** Ask "Why did this happen?" one level deeper than the current answer. Repeat until the user confirms they don't know or no deeper cause is controllable.
+2. **Ask the prevention/detection question:** "Why wasn't this prevented or caught earlier?" for every significant node. This often opens a separate detection or process branch.
+3. **Apply lenses:** For each branch, use the Branch Lenses table (§ below) to identify blind spots. If a lens hasn't been touched, ask one question to probe it.
+4. **Challenge systemic patterns:** Ask whether similar incidents happened elsewhere (other services, teams, features). A confirmed second instance upgrades `possible` → `actual (systemic)`.
+
+**Gate:** Before moving to §4, you must be able to confirm at least one of:
+- Every branch has ≥3 causal levels, OR
+- The user has explicitly stated they cannot go deeper on that branch.
+
+Do not produce the deliverable until this gate is satisfied.
+
+### 4. Build Causal Tree (synthesize)
+
+After probing is complete, synthesize into the tree structure:
 
 - Treat each symptom as a node.
-- Ask "why?" recursively, adding child causes.
+- Add child causes from the probing answers.
 - At **any node** — symptom or cause — ask both: *Why did this happen?* and *Why wasn't it prevented or detected?* Questions are not limited to the top level; a contributing cause can itself raise a question that becomes its own branch.
 - Stop when no deeper controllable cause exists or evidence is insufficient.
 - For any Process branch, ask: has a similar incident occurred in adjacent systems, features, or teams? A second confirmed instance upgrades a "possible" systemic root cause to "actual (systemic)".
 
-### 4. Label Each Leaf
+### 5. Label Each Leaf
 
 | Label | Meaning |
 |---|---|
@@ -63,7 +82,7 @@ Summarize the apparent problem in one sentence. Confirm with user if ambiguous.
 
 Distinguish cause types where useful: proximate, contributing, systemic.
 
-### 5. Produce Document
+### 6. Produce Document
 
 See **Deliverable** section.
 
@@ -133,11 +152,12 @@ Action types: `containment` · `mitigation` · `corrective` · `preventive`
 
 ## Stop Condition
 
-Stop only when all three conditions are met:
+Stop only when all four conditions are met:
 
-1. Every root-cause branch is labeled (`actual root cause`, `possible root cause`, or `unknown`).
-2. Every branch has at least one action.
-3. Every open question has been resolved or the user mentioned explicitly they cannot answer it.
+1. The Probing gate (§3) has been satisfied — every branch has ≥3 causal levels OR the user confirmed they cannot go deeper.
+2. Every root-cause branch is labeled (`actual root cause`, `possible root cause`, or `unknown`).
+3. Every branch has at least one action.
+4. Every open question has been resolved or the user mentioned explicitly they cannot answer it.
 
 Do not stop while questions remain unanswered — continue the interview. `## Open Questions` is only for questions that are genuinely unresolvable (missing evidence, dependencies outside of your control) or that the user has explicitly deferred; it is not a place to park questions you have not yet asked.
 
