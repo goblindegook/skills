@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: Use when user wants to stress-test an idea or plan, review a design, or says "grill me".
+description: Use when user wants to stress-test an idea or plan, review a design, or says "grill me", "challenge my assumptions", "what am I missing about X", "punch holes in this", "give me hard questions", "what could go wrong", or asks for critical feedback on a decision or approach.
 ---
 
 # Grill Me
