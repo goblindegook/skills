@@ -135,7 +135,9 @@ Output a table in this format:
 
 Mark inferred scores with `(inferred)` in the rationale.
 
-Then present the top-3 improvements — the three lowest-scoring properties, each with one specific, actionable fix drawn from the actual code:
+**Priority override:** If Automated (9) or Deterministic (11) score ≤ 2, always rank them first regardless of other scores — they block or corrupt every other improvement.
+
+Then present the top-3 improvements — prioritizing the override rule above, then the three lowest-scoring properties — each with one specific, actionable fix drawn from the actual code:
 
 ```
 ## Top 3 Improvements
@@ -151,11 +153,11 @@ Then present the top-3 improvements — the three lowest-scoring properties, eac
    A `createUser(overrides = {})` factory would reduce this to one line per test.
 ```
 
-### Step 5: Offer to save
+### Step 5: Offer to act
 
-Ask: "Would you like me to save this report to `docs/test-quality-report.md`?"
+Ask: "Want me to tackle any of the top-3 improvements? I can start with the highest-impact one or work through them in order."
 
-If yes, write the full report as a markdown document with the same content, plus a timestamp and the detected stack at the top.
+If the user says yes, address each fix immediately using the actual code as the target.
 
 ## Notes on inferred scores
 
