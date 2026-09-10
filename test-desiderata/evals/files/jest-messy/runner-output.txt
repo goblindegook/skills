@@ -1,0 +1,19 @@
+PASS src/__tests__/user.test.js
+  ✓ 1 (238ms)
+  ✓ 2 (312ms)
+  ✓ 3 (289ms)
+  ✓ calls _fetchFromDb with correct id (12ms)
+  ✓ email validation (45ms)
+
+PASS src/__tests__/checkout.test.js
+  CheckoutService
+    ✓ processes payment (4231ms)
+    ✓ handles declined card (3987ms)
+    ✓ applies discount code (4102ms)
+    ✓ x42 edge case (4055ms)
+
+Test Suites: 2 passed, 2 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        17.312s
+Ran all test suites.

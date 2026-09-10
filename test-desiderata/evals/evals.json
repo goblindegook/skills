@@ -1,0 +1,66 @@
+{
+  "skill_name": "test-desiderata",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hey, can you review the test quality of my project? Here are the test files and the output from running jest. I want to know how good my tests are according to Kent Beck's desiderata.",
+      "expected_output": "A terminal table scoring all 12 desiderata 1-5, a /60 total, and top-3 specific improvements referencing actual file/line issues in the provided Jest test files.",
+      "files": [
+        "evals/files/jest-messy/user.test.js",
+        "evals/files/jest-messy/checkout.test.js",
+        "evals/files/jest-messy/package.json",
+        "evals/files/jest-messy/runner-output.txt"
+      ],
+      "assertions": [
+        "The output includes a table with all 12 desiderata scored",
+        "Each score is in the range 1-5",
+        "A /60 total score is shown",
+        "Top-3 improvements are listed with specific references to the provided files",
+        "The Isolated property scores 2 or lower (shared mutable testUser, beforeAll not reset per test)",
+        "The Fast property scores 2 or lower (17s suite with 4s+ real network calls per checkout test)",
+        "The Behavioral or Structure-insensitive property scores 2 or lower (spy on _fetchFromDb internal method)",
+        "Checkout network calls are flagged as a Fast improvement",
+        "The skill offers to save a markdown report"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm working on a Python service and want to audit my test suite. Can you check my tests against the 12 test desiderata and let me know where I stand? Here's the test file and the pytest output.",
+      "expected_output": "A scored table for all 12 desiderata, with the Fast property flagged clearly due to the 45s sleep, Deterministic flagged for time.sleep and wall-clock ordering, and top-3 improvements focused on those issues.",
+      "files": [
+        "evals/files/pytest-slow/test_orders.py",
+        "evals/files/pytest-slow/runner-output.txt",
+        "evals/files/pytest-slow/.github/workflows/ci.yml"
+      ],
+      "assertions": [
+        "The output includes a table with all 12 desiderata scored",
+        "A /60 total score is shown",
+        "The Fast property scores 1 or 2 (47s suite, 45s sleep)",
+        "The Deterministic property scores 2 or lower (time.sleep and wall-clock test)",
+        "The Automated property scores 4 or 5 (GitHub Actions CI is present)",
+        "The sleep(2) call is specifically called out as a problem",
+        "Top-3 improvements are listed",
+        "The skill offers to save a markdown report"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "we have a small auth module, here are the tests and the output. we run them manually with node auth.test.js. just curious how they hold up against Kent Beck's test desiderata",
+      "expected_output": "A scored table calling out the lack of a test framework, no CI, timing-dependent test, and no assertions framework. Automated scores low. Top-3 improvements include adopting a test runner and adding CI.",
+      "files": [
+        "evals/files/no-ci/auth.test.js",
+        "evals/files/no-ci/runner-output.txt"
+      ],
+      "assertions": [
+        "The output includes a table with all 12 desiderata scored",
+        "A /60 total score is shown",
+        "The Automated property scores 1 or 2 (manual run, no CI detected)",
+        "The Deterministic property scores 2 or lower (setTimeout-based timing test)",
+        "The Specific property scores 2 or lower (no test framework means failures give no location info)",
+        "Top-3 improvements are listed",
+        "Adopting a test runner (jest, vitest, mocha or similar) is recommended",
+        "The skill offers to save a markdown report"
+      ]
+    }
+  ]
+}

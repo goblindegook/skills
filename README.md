@@ -15,6 +15,7 @@ For specific skills:
 ```bash
 npx skills add goblindegook/skills/rca
 npx skills add goblindegook/skills/tdd
+npx skills add goblindegook/skills/test-first
 ```
 
 ## Available Skills by Theme
@@ -31,4 +32,5 @@ npx skills add goblindegook/skills/tdd
 
 - `roundtable`: Multi-persona code review — each persona reads the actual source, then they discuss and converge on a prioritised top 5 list of problems or improvements.
 - `tdd`: Strict test-driven development workflow (red-green-refactor) for behavior changes and bug fixes, one test at a time.
+- `test-first`: Agentic test-first workflow for feature-sized or delegated work — tests are drafted and human-approved before any implementation, with granularity dialed to certainty instead of fixed at one test at a time.
 - `test-desiderata`: Critiques and scores a project's test suite against Kent Beck's [Test Desiderata](https://testdesiderata.com), assigning a 1–5 score to each property and surfacing the top 3 highest-impact improvements.

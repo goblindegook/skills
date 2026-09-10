@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.5, pytest-7.4.0
+rootdir: /app
+configfile: pytest.ini
+collected 10 items
+
+test_orders.py::TestOrderCreation::test_creates_order_with_valid_items PASSED [  10%]
+test_orders.py::TestOrderCreation::test_rejects_empty_items PASSED       [  20%]
+test_orders.py::TestOrderCreation::test_rejects_negative_quantity PASSED  [  30%]
+test_orders.py::TestOrderCreation::test_total_is_calculated_correctly PASSED [  40%]
+test_orders.py::TestOrderFulfillment::test_ships_pending_order PASSED    [  50%]
+test_orders.py::TestOrderFulfillment::test_cannot_ship_already_shipped_order PASSED [  60%]
+test_orders.py::TestOrderFulfillment::test_processing_delay PASSED       [  70%]
+test_orders.py::TestOrderFulfillment::test_uses_timestamp_for_ordering PASSED [  80%]
+
+============================== 10 passed in 47.32s ==============================
+
+slowest 3 test durations:
+  45.2s test_orders.py::TestOrderFulfillment::test_processing_delay
+   1.1s test_orders.py::TestOrderCreation::test_creates_order_with_valid_items
+   0.8s test_orders.py::TestOrderFulfillment::test_ships_pending_order

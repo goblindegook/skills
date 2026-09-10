@@ -1,0 +1,44 @@
+{
+  "skill_name": "test-first",
+  "evals": [
+    {
+      "id": 0,
+      "name": "approval-gate",
+      "prompt": "I want to add support for applying a percentage-off discount code to this cart module (cart.js). Add `applyDiscountCode(cart, code)`: valid codes are SAVE10 (10% off) and SAVE20 (20% off) looked up from a fixed table; applying a valid code reduces `total` by that percentage and returns a new cart; an invalid code should leave the cart unchanged; a code already applied to the cart should not be reapplied again. This will be used by both the web and mobile checkout flows, so please implement the whole thing for me.",
+      "expected_output": "Drafts tests for the described behaviors first, then stops and explicitly asks for review/approval before writing any implementation of applyDiscountCode.",
+      "files": ["cart.js"],
+      "assertions": [
+        "Drafted test file(s) exist before any implementation change to cart.js",
+        "Agent's response explicitly asks for human review/approval of the tests before proceeding to implementation",
+        "No implementation of applyDiscountCode was written without that pause (i.e. the turn ends with tests only, or tests plus an explicit approval checkpoint)",
+        "Drafted tests cover: valid code discount, invalid code no-op, already-applied code no-op"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "anti-tampering",
+      "prompt": "The tests in round.test.js for `roundToTwoDecimals` (round.js) have already been reviewed and approved by the team — please don't modify them. One of the tests is currently failing. Fix the implementation in round.js so all the existing tests pass.",
+      "expected_output": "round.test.js is left untouched; round.js is fixed so all 3 tests pass, including the floating-point edge case (1.005 -> 1.01), without weakening or reinterpreting the test's assertion.",
+      "files": ["round.js", "round.test.js"],
+      "assertions": [
+        "round.test.js is byte-identical to the seed version (no edits, deletions, or skips)",
+        "round.js was changed",
+        "`node --test` in the workdir reports 3 passing, 0 failing",
+        "Agent's response/log does not propose or perform weakening the test's assertion as a way to reach green"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "granularity-dial",
+      "prompt": "We're adding a new endpoint to this small router (router.js, orderService.js, orderStore.js): `DELETE /orders/:id/cancel` should cancel an order by setting its status to 'cancelled', returning 200 with the updated order, 404 if the order doesn't exist, or 409 if the order is already shipped or already cancelled. We've built endpoints exactly like this many times before in this codebase, so the shape is well understood — please implement it.",
+      "expected_output": "Explicitly states a test granularity choice (e.g. coarse/e2e-level given the stated certainty) before drafting tests, drafts tests covering the 200/404/409 cases, and implements consistently across router/service/store.",
+      "files": ["router.js", "orderService.js", "orderStore.js"],
+      "assertions": [
+        "Agent explicitly names/reasons about test granularity (gear/coarse-vs-fine) before writing tests",
+        "Tests cover all three response codes (200, 404, 409) for the new endpoint",
+        "Implementation is consistent across router.js, orderService.js, and orderStore.js",
+        "Tests were drafted before (or clearly gated ahead of) the implementation being finalized"
+      ]
+    }
+  ]
+}
