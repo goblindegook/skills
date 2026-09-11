@@ -65,7 +65,7 @@ Run the full suite. If a test needed to change to pass, treat that change as new
 **Do:**
 - Test behavior a caller or user cares about, through public interfaces.
 - Describe the outcome, not how it's achieved — tests should survive internal refactors.
-- Name and describe tests in business language — what a caller or end user experiences — not implementation mechanics. The person approving these tests at the gate needs to judge whether they capture real intent without first translating your jargon; a name like "does not mutate the input" or "returns a new reference" makes them do that translation work, or skip it.
+- Name and describe tests in the domain language — what a caller or end user experiences — not implementation mechanics. The person approving these tests at the gate needs to judge whether they capture real intent without first translating your jargon; a name like "does not mutate the input" or "returns a new reference" makes them do that translation work, or skip it.
 - One test per behavior, Arrange-Act-Assert, self-contained even if that means some duplication.
 - Keep every test on a single straight-line path: no `if`, no `try`/`catch` around the assertion, no early return. A reader must be able to see the one path the test takes without simulating it in their head, and a failure must name exactly one case.
 - Repeating a behavior over many inputs? Reach for the framework's data/table-driven support first — `it.each` / `test.each` (Jest, Vitest), `@pytest.mark.parametrize` (pytest), `t.Run` over a slice (Go), `@ParameterizedTest` (JUnit), `#[case]` (rstest). Each row is then its own reported case, and the framework accounts for the rows.
